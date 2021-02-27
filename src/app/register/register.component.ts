@@ -48,16 +48,16 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerForm.invalid);
     
     if(this.registerForm.invalid) return;
-    // this.http.post('users/register', this.registerForm.value).subscribe((res: Response) => {
-    //   this.isSubmitted = false;
-    //   if(res.status == Status.SUCCESS){
-    //     this.successMessage = res.message;
-    //     setTimeout(() => this.router.navigateByUrl("login"), 2000);
-    //   }
-    //   else{
-    //     this.errorMessage = res.message;
-    //   }
-    // })
+    this.http.post('users/register', this.registerForm.value).subscribe((res: Response) => {
+      this.isSubmitted = false;
+      if(res.status == Status.SUCCESS){
+        this.successMessage = res.message;
+        setTimeout(() => this.router.navigateByUrl("login"), 2000);
+      }
+      else{
+        this.errorMessage = res.message;
+      }
+    })
 
   }
 
