@@ -28,9 +28,9 @@ export class RegisterComponent implements OnInit {
       age: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      password2: ['', Validators.required]
+      // password2: ['', Validators.required]
     });
-    this.equalPassword();
+    // this.equalPassword();
   }
 
   get formControls() { return this.registerForm.controls }
@@ -45,18 +45,19 @@ export class RegisterComponent implements OnInit {
   register(){
     this.errorMessage = '';
     this.isSubmitted = true;
+    console.log(this.registerForm.invalid);
+    
     if(this.registerForm.invalid) return;
-    if(this.registerForm.value.password === this.registerForm.value.password) 
-    this.http.post('users/register', this.registerForm.value).subscribe((res: Response) => {
-      this.isSubmitted = false;
-      if(res.status == Status.SUCCESS){
-        this.successMessage = res.message;
-        setTimeout(() => this.router.navigateByUrl("login"), 2000);
-      }
-      else{
-        this.errorMessage = res.message;
-      }
-    })
+    // this.http.post('users/register', this.registerForm.value).subscribe((res: Response) => {
+    //   this.isSubmitted = false;
+    //   if(res.status == Status.SUCCESS){
+    //     this.successMessage = res.message;
+    //     setTimeout(() => this.router.navigateByUrl("login"), 2000);
+    //   }
+    //   else{
+    //     this.errorMessage = res.message;
+    //   }
+    // })
 
   }
 
