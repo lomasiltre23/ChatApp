@@ -28,9 +28,9 @@ export class RegisterComponent implements OnInit {
       age: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      // password2: ['', Validators.required]
+      password2: ['', Validators.required]
     });
-    // this.equalPassword();
+    this.equalPassword();
   }
 
   get formControls() { return this.registerForm.controls }
@@ -38,7 +38,6 @@ export class RegisterComponent implements OnInit {
   equalPassword(){
     this.formControls.password2.valueChanges.subscribe(pass => {
       if(pass != this.formControls.password.value) this.formControls.password2.setErrors({equal: true});
-      else this.formControls.password2.setErrors({equal: false})
     })
   }
 
@@ -48,6 +47,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerForm.invalid);
     
     if(this.registerForm.invalid) return;
+    
     this.http.post('users/register', this.registerForm.value).subscribe((res: Response) => {
       this.isSubmitted = false;
       if(res.status == Status.SUCCESS){

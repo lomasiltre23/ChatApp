@@ -53,7 +53,7 @@
                               </div>
               </div>
               <!-- Repeat Password -->
-              <!-- <div class="form-floating mb-4">
+              <div class="form-floating mb-4">
                 <input type="password" formControlName="password2" class="form-control" id="password2"
                   placeholder="Repeat Password">
                 <label for="password2">Repeat Password</label>
@@ -61,9 +61,13 @@
                                   <div class="text-danger mt-1 ms-2" *ngIf="formControls.password2.errors.required">Field is required</div>
                                   <div class="text-danger mt-1 ms-2" *ngIf="formControls.password2.errors?.equal">Must be equal</div>
                               </div>
-              </div> -->
+              </div>
               <input type="submit" class="btn btn-primary" value="Register">
               <a type="button" class="btn btn-link" [routerLink]="['/login']">Cancel</a>
+              <pre>
+                {{registerForm.value | json}}
+                {{formControls.password2.errors | json}}
+              </pre>
             </form>
           </div>
         </div>
